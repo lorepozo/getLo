@@ -1,0 +1,58 @@
+<template name="feed">
+  {{#if hasPostedToday}}
+    {{> goodjob}}
+  {{else}}
+  <div class="prompt">
+    <div class="question"> What did you achieve today? </div>
+    <div id="today" class="content">
+      <div class="ui inline fluid input">
+        <input id="post" type="text" placeholder="Today, I ...">
+      </div>
+      <div class="ui purple fluid submit button">
+        Submit
+      </div>
+    </div>
+  </div>
+  {{/if}}
+
+  <div class="ui divider"></div>
+  <div class="feed">
+    {{feed}}
+  </div>
+  {{#each posts}}
+    {{> post}}
+  {{/each}}
+
+</template>
+
+<template name="post">
+  <div class="post container">
+    <img class="ui circular image" src="/assets/bros/{{username}}.jpg">
+    <div class="content">
+      "{{content}}"
+      <br>
+    </div>
+    <div class="user">
+      {{name}}
+    </div>
+  </div>
+</template>
+
+<template name="goodjob">
+  <div class="goodjob prompt">
+    <div class="question">
+      Thanks for checking in today!
+    </div>
+    <div class="centered content">
+      If you like, you can edit your post.
+    </div>
+    <div id="yourPost" class="content">
+      <div class="ui inline fluid input">
+        <input id="update" type="text" value="">
+      </div>
+      <div class="ui purple fluid update button">
+        Update
+      </div>
+    </div>
+  </div>
+</template>

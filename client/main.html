@@ -1,0 +1,23 @@
+<head>
+  <title>Gavel</title>
+  <link href='//fonts.googleapis.com/css?family=Lato:300,700' rel='stylesheet' type='text/css'>
+  <link href='//fonts.googleapis.com/css?family=Oswald' rel='stylesheet' type='text/css'>
+</head>
+
+<body>
+  <i class="large logo inverted square location nav icon link"></i>
+  <div class="ui page dimmer">
+    <div class="content">
+      <div class="center"></div>
+    </div>
+  </div>
+{{> app}}
+</body>
+
+<template name="app">
+  {{#if currentUser}}
+    {{> feed}}
+  {{else}}
+    {{> login}}
+  {{/if}}
+</template>
