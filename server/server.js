@@ -7,20 +7,7 @@ getAllPosts = function () {
     limit: 32});
 };
 
-getTodaysPosts = function (date) {
-
-  var start = new Date(date.setHours(0, 0, 0, 0));
-
-  console.log(start);
-
-  return Posts.find({
-    timestamp: { $gte: start }
-  });
-};
-
 Meteor.publish("allPosts", getAllPosts);
-
-Meteor.publish("todaysPosts", getTodaysPosts);
 
 Meteor.methods({
   post: function (content) {

@@ -4,11 +4,11 @@ var start = new Date(today.setHours(0, 0, 0, 0));
 
 Session.set("yourPost", "");
 
-Template.login.events({
-    'click .logout.button': function () {
+Template.feed.events({
+    'click .logout': function () {
 		Meteor.logout()
     }
-})
+});
 
 Template.feed.posts = function () {
   return Posts.find({
