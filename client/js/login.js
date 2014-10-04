@@ -41,6 +41,11 @@ register = function () {
 		profile: {
 			name: getName()
 		}
+	},
+	function (error) {
+		if (error) {
+			showRegErrorMessage()
+		}
 	})
 }
 
@@ -50,6 +55,11 @@ showErrorMessage = function () {
 
 hideErrorMessage = function () {
   $('.error.message').removeClass('visible');
+  $('.regerror.message').removeClass('visible');
+};
+
+showRegMessage = function () {
+  $('.regerror.message').addClass('visible');
 };
 
 getUsername = function () {

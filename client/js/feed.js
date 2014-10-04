@@ -4,7 +4,7 @@ var start = new Date(today.setHours(0, 0, 0, 0));
 
 Session.set("yourPost", "");
 
-Template.logout.events({
+Template.login.events({
     'click .logout.button': function () {
 		Meteor.logout()
     }
