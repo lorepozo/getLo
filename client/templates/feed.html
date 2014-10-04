@@ -3,21 +3,22 @@
     <i class="location icon"></i>
 	Logout
   </div>
-  {{#if hasPostedToday}}
-    {{> goodjob}}
-  {{else}}
   <div class="prompt">
     <div class="question"> What's up? </div>
     <div id="today" class="content">
       <div class="ui inline fluid input">
-        <input id="post" type="text" placeholder="The sky...">
+        <label class="ui inline label">Content: </label>
+		<input id="post" type="text" placeholder="The sky...">
       </div>
+	  <div class="ui inline fluid input">
+		<label class="ui inline label">Recipient: </label>
+		<input id="recipient" type="text" placeholder="Elmo">
+	  </div>
       <div class="ui blue fluid submit button">
         Submit
       </div>
     </div>
   </div>
-  {{/if}}
 
   <div class="ui divider"></div>
   <div class="feed">
@@ -36,26 +37,7 @@
       <br>
     </div>
     <div class="user">
-      {{name}}
-    </div>
-  </div>
-</template>
-
-<template name="goodjob">
-  <div class="goodjob prompt">
-    <div class="question">
-      You've made a post!
-    </div>
-    <div class="centered content">
-      If you like, you can edit your post.
-    </div>
-    <div id="yourPost" class="content">
-      <div class="ui inline fluid input">
-        <input id="update" type="text" value="">
-      </div>
-      <div class="ui blue fluid update button">
-        Update
-      </div>
+      {{sender}}
     </div>
   </div>
 </template>
