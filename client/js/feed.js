@@ -4,6 +4,12 @@ var start = new Date(today.setHours(0, 0, 0, 0));
 
 Session.set("yourPost", "");
 
+Template.logout.events({
+    'click .logout.button': function () {
+		Meteor.logout()
+    }
+})
+
 Template.feed.posts = function () {
   return Posts.find({
     timestamp: { $gte: start }

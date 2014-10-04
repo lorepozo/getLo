@@ -1,14 +1,18 @@
 <template name="feed">
+  <div class="right floated ui blue button logo inverted link logout">
+    <i class="location icon"></i>
+	Logout
+  </div>
   {{#if hasPostedToday}}
     {{> goodjob}}
   {{else}}
   <div class="prompt">
-    <div class="question"> What did you achieve today? </div>
+    <div class="question"> What's up? </div>
     <div id="today" class="content">
       <div class="ui inline fluid input">
-        <input id="post" type="text" placeholder="Today, I ...">
+        <input id="post" type="text" placeholder="The sky...">
       </div>
-      <div class="ui purple fluid submit button">
+      <div class="ui blue fluid submit button">
         Submit
       </div>
     </div>
@@ -27,7 +31,6 @@
 
 <template name="post">
   <div class="post container">
-    <img class="ui circular image" src="/assets/bros/{{username}}.jpg">
     <div class="content">
       "{{content}}"
       <br>
@@ -41,7 +44,7 @@
 <template name="goodjob">
   <div class="goodjob prompt">
     <div class="question">
-      Thanks for checking in today!
+      You've made a post!
     </div>
     <div class="centered content">
       If you like, you can edit your post.
@@ -50,7 +53,7 @@
       <div class="ui inline fluid input">
         <input id="update" type="text" value="">
       </div>
-      <div class="ui purple fluid update button">
+      <div class="ui blue fluid update button">
         Update
       </div>
     </div>

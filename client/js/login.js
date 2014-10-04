@@ -18,8 +18,14 @@ Template.login.events({
   }
 });
 
-login = function () {
-  Meteor.loginWithPassword(getUsername(), getPassword(),
+/* DEV ONLY Loophole */
+window.devonly = function() {
+	
+}
+/* end loophole */
+
+login = function (username, password) {
+  Meteor.loginWithPassword(getUsername() || username, getPassword() || password,
     function (error) {
       if (error) {
         showErrorMessage();
