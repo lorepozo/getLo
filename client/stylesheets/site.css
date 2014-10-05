@@ -91,3 +91,15 @@ body
 .lo .content {
   font-size: 1.2em;
 }
+
+.contact {
+  padding: 50px 0;
+  width: 50vw;
+  left: 25%;
+}
+
+.plus {
+	position:absolute;
+	right:30px;
+	top:27.5px;
+}

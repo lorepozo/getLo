@@ -23,6 +23,9 @@
       </div>
     </div>
   </div><!--/remove-->
+  {{> warningLo}}
+  {{> contacts}}
+  {{> activeLos}}
 
   <div class="ui divider"></div>
   {{#each los}}
@@ -37,5 +40,60 @@
       <strong>{{sender}}</strong> sent a <a class="ui blue link header square" href="https://www.google.com/maps/@{{lat}},{{long}},16z">Lo<i style="padding:0;margin:0" class="location icon"></i></a> to <strong>{{recipient}}</strong>
       <br>
     </div>
+  </div>
+</template>
+
+<template name="contacts">
+  <div class="ui primary segment contact">
+	<div>  
+	  	<div class="ui block blue header centered">
+			Contacts
+		</div>
+		<i class="ui blue plus link icon add sign box large"></i>
+	</div>
+	<div class="blue">Jim Bob</div>
+	
+	<div class="ui modal">
+	  <i class="close icon"></i>
+	  <div class="header">
+	    Header
+	  </div>
+	  <div class="content">
+	    <div class="left">
+	      Some content to the left, usually an image or icon
+	    </div>
+	    <div class="right">
+	      Some content to the right
+	    </div>
+	  </div>
+	  <div class="actions">
+	    <div class="ui button">
+	      Cancel
+	    </div>
+	    <div class="ui button">
+	      Okay
+	    </div>
+	  </div>
+	</div>
+	
+  </div>
+</template>
+
+
+<template name="activeLos">
+  <div class="ui primary segment contact centered">
+  	<div class="ui blue block header">
+  	 	Active Lo's
+  	</div>
+    <div class="centered content">
+      Jim Bob
+    </div>
+  </div>
+</template>
+
+
+<template name="warningLo">
+  	<div class="ui segment centered red block header contact">
+  	 	Warning: Your location is not known. Try to reload your page.
   </div>
 </template>
