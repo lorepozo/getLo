@@ -26,7 +26,7 @@ catch (e) {
 
 Template.activelos.los = function () {
   return Los.find({$or: [
-	  {receiver: Meteor.user().username},
+	  {recipient: Meteor.user().username},
 	  {sender: Meteor.user().username}
   ]}, {
     sort: {timestamp: -1},

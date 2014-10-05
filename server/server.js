@@ -12,11 +12,7 @@ Meteor.publish("allLos", getAllLos);
 Meteor.methods({
   post: function (o) {
 
-    var user = Meteor.users.find({_id: this.userId}).fetch()[0],
-		count = Los.find({
-			receiver: Meteor.user().username,
-  			sender: Meteor.user().username
-		}).count();
+    var user = Meteor.users.find({_id: this.userId}).fetch()[0];
 
     Los.insert({
       owner: this.userId,
