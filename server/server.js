@@ -1,8 +1,3 @@
-var url = 'https://api.parse.com/1/push',
-	appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P',
-	restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT',
-	targetDevice = 'pC2h2n3zkR';
-
 Los = new Meteor.Collection("los");
 Contacts = new Meteor.Collection("contacts");
 
@@ -38,17 +33,13 @@ Meteor.methods({
       timestamp: new Date()
     });
 	
-	var notifMsg = user.username + " wants to getLo",
-		pushPayload = {"where": {"objectId": targetDevice}, "data": {"alert": notifMsg}};
-	pushPayload = JSON.stringify(pushPayload);
-	
 	$.ajax({
-	url: url,
-	type: "POST",
-	contentType: "application/json",
-	port: 443,
-	data: pushPayload,
-	headers: {"X-Parse-Application-Id": appId, "X-Parse-REST-API-Key": restKey}
+		url: 'https://api.parse.com/1/push',
+		type: "POST",
+		contentType: "application/json",
+		port: 443,
+		data: JSON.stringify({"where": {"objectId": 'pC2h2n3zkR'}, "data": {"alert": user.username + " wants to getLo"}}),
+		headers: {"X-Parse-Application-Id": 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P', "X-Parse-REST-API-Key": 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT'}
 	})
   },
   
