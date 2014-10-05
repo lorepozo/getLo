@@ -47,7 +47,7 @@ Meteor.methods({
   	
 	var user = Meteor.users.find({_id: this.userId}).fetch()[0];
 	
-	if (!Meteor.users.find({username: contact}).fetch()[0]) {return}
+	if (!Meteor.users.find({username: contact}).fetch()[0] || Contacts.find({user: user.username, contact: contact}).fetch()[0]) {return}
 	Contacts.insert({
 		user: user.username,
 		contact: contact

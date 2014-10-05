@@ -8,6 +8,10 @@
 	left:20px;
 }
 
+.contactlist {
+	cursor:pointer;
+}
+
 body
 {
   font-family: 'Lato', 'Helvetic Neue', 'Helvetica', sans-serif;

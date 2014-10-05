@@ -59,6 +59,15 @@ Template.feed.events({
 	  });
       clearInput();
     }
+  },
+  'click .contactlist' : function (e) {
+	var contact = e.currentTarget.innerHTML;
+    Meteor.call('post', {
+		sender: Meteor.user().username,
+		lat: o.lo.latitude,
+		long: o.lo.longitude,
+		recipient: contact
+	});
   }
 });
 
@@ -75,5 +84,14 @@ clearInput = function () {
 };
 
 Template.contacts.contacts = function () {
-	return Contacts.find()
+	var c = Contacts.find().fetch(),d=[],e=[];
+	for (var i in c) {
+		var bool = false;
+		for (var j in d) {
+			if (c[i].user == d[j].user && c[i].contact == d[j].contact) bool=true;
+		}
+		if (!bool) d.push({user: c[i].user, contact: c[i].contact});
+	}
+	console.log(d);
+	return d
 }
