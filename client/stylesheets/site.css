@@ -103,3 +103,12 @@ body
 	right:30px;
 	top:27.5px;
 }
+
+@media (max-width: 750px) {
+	.contact,
+	.lo.container,
+	#you.content,
+	.login.form {
+		width:100vw;
+	}
+}
