@@ -1,7 +1,7 @@
 var url = 'https://api.parse.com/1/push'
 var appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P'
 var restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT'
-var targetDevice = 'installation id goes here'
+var targetDevice = 'c889d897-0570-4ba3-ac6a-c2c932ea2a8f'
 
 Los = new Meteor.Collection("los");
 Contacts = new Meteor.Collection("contacts");
