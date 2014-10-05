@@ -25,14 +25,6 @@ Meteor.methods({
 
     var user = Meteor.users.find({_id: this.userId}).fetch()[0];
 
-    Los.insert({
-      sender: user.username,
-      recipient: o.recipient,
-	  lat: o.lat,
-	  long: o.long,
-      timestamp: new Date()
-    });
-	
 	var geocoder, address;
 	function initialize() {
 		geocoder = new google.maps.Geocoder();
@@ -45,6 +37,14 @@ Meteor.methods({
 			}
 		})
 	}
+
+    Los.insert({
+      sender: user.username,
+      recipient: o.recipient,
+	  lat: o.lat,
+	  long: o.long,
+      timestamp: new Date()
+    });
 	
 	$.ajax({
 		url: 'https://api.parse.com/1/push',
