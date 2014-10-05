@@ -24,14 +24,12 @@
 
 <template name="lo">
   <li class="lo list-group-item">
-      <strong>{{sender}}</strong> sent a <a class="ui black link header square" href="//maps.google.com/maps?q=loc:{{lat}},{{long}}">Lo<i style="padding:0;margin:0" class="location icon"></i></a> to <strong>{{recipient}}</strong>
+      <strong>{{sender}}</strong> sent a <a href="//maps.google.com/maps?q=loc:{{lat}},{{long}}">Lo<i style="padding:0;margin:0" class="location icon"></i></a> to <strong>{{recipient}}</strong>
   </li>
 </template>
 
 <template name="contact">
-    <li class="lo list-group-item">
-        <div class="ui block inverted header">{{contact}}</div>
-    </li>
+    <li class="lo list-group-item">{{contact}}</li>
 </template>
 
 <template name="contacts">

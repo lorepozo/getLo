@@ -1,7 +1,7 @@
-var url = 'https://api.parse.com/1/push';
-var appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P';
-var restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT';
-var targetDevice = 'c889d897-0570-4ba3-ac6a-c2c932ea2a8f';
+var url = 'https://api.parse.com/1/push',
+	appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P',
+	restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT',
+	targetDevice = 'c889d897-0570-4ba3-ac6a-c2c932ea2a8f';
 
 Los = new Meteor.Collection("los");
 Contacts = new Meteor.Collection("contacts");
@@ -38,8 +38,8 @@ Meteor.methods({
       timestamp: new Date()
     });
 	
-	var notifMsg = string.concat(user.username, " wants to GetLo");
-	var pushPayload = {"where": {"objectId": targetDevice}, "data": {"alert": notifMsg}};
+	var notifMsg = user.username + " wants to getLo",
+		pushPayload = {"where": {"objectId": targetDevice}, "data": {"alert": notifMsg}};
 	pushPayload = JSON.stringify(pushPayload);
 	
 	$.ajax({

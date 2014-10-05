@@ -15,22 +15,6 @@ body
   color: #333332;
 }
 
-/* Things that use the Oswald Font */
-.question,
-.logo {
-  font-family: 'Oswald', 'Helvetic Neue', 'Helvetica', sans-serif;
-}
-
-.ui.menu .item>img:only-child.account {
-  display: inline-block;
-  margin: 0;
-  margin-right: 8px;
-}
-
-.ui.input input {
-  font-family: 'Lato', 'Helvetic Neue', 'Helvetica', sans-serif;
-}
-
 .centered {
   text-align: center;
 }
@@ -40,24 +24,9 @@ body
   margin: 0 auto;
 }
 
-.question {
-  font-weight: 700;
-  text-align: center;
-  font-size: 3em;
-  margin: 8px;
-}
-
-.prompt {
-  padding: 50px 0;
-}
-
-.nav.logo {
-  position: fixed;
-}
-
 #you.content {
-  min-width: 320px;
-  width: 50vw;
+  width:90%;
+  max-width: 720px;
   margin: 8px auto;
 }
 
@@ -82,8 +51,8 @@ body
 }
 
 .lo.container {
-  min-width: 320px;
-  width: 50vw;
+  width:90%;
+  max-width: 720px;
   margin: 36px auto;
   text-align: center;
 }
@@ -96,7 +65,8 @@ body
 .contact,
 .warninglo {
   padding: 15px 0;
-  width: 50vw;
+  width:90%;
+  max-width: 720px;
   margin: 0 auto;
 }
 
