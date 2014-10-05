@@ -1,7 +1,7 @@
-var url = 'https://api.parse.com/1/push'
-var appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P'
-var restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT'
-var targetDevice = 'c889d897-0570-4ba3-ac6a-c2c932ea2a8f'
+var url = 'https://api.parse.com/1/push';
+var appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P';
+var restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT';
+var targetDevice = 'c889d897-0570-4ba3-ac6a-c2c932ea2a8f';
 
 Los = new Meteor.Collection("los");
 Contacts = new Meteor.Collection("contacts");
@@ -38,17 +38,17 @@ Meteor.methods({
       timestamp: new Date()
     });
 	
-	var notifMsg = string.concat(user.username, " wants to GetLo")
+	var notifMsg = string.concat(user.username, " wants to GetLo");
 	var pushPayload = {"where": {"objectId": targetDevice}, "data": {"alert": notifMsg}};
 	pushPayload = JSON.stringify(pushPayload);
 	
 	$.ajax({
 	url: url,
-	method: "POST",
+	type: "POST",
+	contentType: "application/json",
 	port: 443,
-	post: 1,
-	postfields: pushPayload,
-	httpheader: {string.concat("X-Parse-Application-Id: ", appId), string.concat("X-Parse-REST-API-Key: " . restKey), "Content-Type: application/json"}
+	data: pushPayload,
+	headers: {"X-Parse-Application-Id": appId, "X-Parse-REST-API-Key": restKey}
 	})
   },
   
