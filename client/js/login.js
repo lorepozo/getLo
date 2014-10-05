@@ -1,16 +1,16 @@
 Template.login.events({
   'click .login.button': function () {
     login();
-    clearInputs();
+    clearInput();
   },
   'click .register.button': function(){
     register();
-    clearInputs();
+    clearInput();
   },
   'keyup #password' : function (event) {
     if (event.keyCode === 13) {
       login();
-      clearInputs();
+      clearInput();
     }
   },
   'keyup .form' : function () {
@@ -72,6 +72,6 @@ getName = function () {
 	return $('#name').val();
 }
 
-clearInputs = function () {
-  $('input').val("");
+clearInput = function () {
+  $('#recipient').val("");
 };

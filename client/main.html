@@ -5,7 +5,7 @@
 </head>
 
 <body>
-	<h4 class="ui inverted blue block center aligned header">
+	<h4 class="ui huge inverted blue block center aligned header">
 	  GET &nbsp; LO
 	</h4>
   <div class="ui page dimmer">
@@ -13,13 +13,9 @@
       <div class="center"></div>
     </div>
   </div>
-{{> app}}
-</body>
-
-<template name="app">
   {{#if currentUser}}
     {{> feed}}
   {{else}}
     {{> login}}
   {{/if}}
-</template>
+</body>
