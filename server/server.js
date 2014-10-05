@@ -17,6 +17,7 @@ Meteor.methods({
 			receiver: Meteor.user().username,
   			sender: Meteor.user().username
 		}).count();
+
     Los.insert({
       owner: this.userId,
       sender: user.username,

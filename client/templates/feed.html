@@ -10,10 +10,6 @@
   </div>
   <!--remove--><div class="prompt">
     <div id="you" class="content">
-      <div class="ui inline fluid input">
-        <label class="ui inline label">Your Lo: </label>
-		<input id="post" type="text" placeholder="{{lo}}">
-      </div>
 	  <div class="ui inline fluid input">
 		<label class="ui inline label">Recipient: </label>
 		<input id="recipient" type="text" placeholder="Elmo">
@@ -23,14 +19,13 @@
       </div>
     </div>
   </div><!--/remove-->
-  {{> warningLo}}
+  {{#if warning}}
+	{{> warningLo}}
+  {{/if}}
   {{> contacts}}
-  {{> activeLos}}
+  {{> activelos}}
 
   <div class="ui divider"></div>
-  {{#each los}}
-    {{> lo}}
-  {{/each}}
 
 </template>
 
@@ -44,50 +39,32 @@
 </template>
 
 <template name="contacts">
-  <div class="ui primary segment contact">
-	<div>  
-	  	<div class="ui block blue header centered">
+  <div class="contact">
+	<div class="ui blue inverted primary segment "> 
+	  	<div class="ui blue inverted block header centered">
 			Contacts
 		</div>
-		<i class="ui blue plus link icon add sign box large"></i>
+		<i class="ui plus link icon add sign box large"></i>
+		<div class="centered content">
+			<div class="ui block inverted header">Jim Bob</div>
+		</div>
 	</div>
-	<div class="blue">Jim Bob</div>
-	
-	<div class="ui modal">
-	  <i class="close icon"></i>
-	  <div class="header">
-	    Header
-	  </div>
-	  <div class="content">
-	    <div class="left">
-	      Some content to the left, usually an image or icon
-	    </div>
-	    <div class="right">
-	      Some content to the right
-	    </div>
-	  </div>
-	  <div class="actions">
-	    <div class="ui button">
-	      Cancel
-	    </div>
-	    <div class="ui button">
-	      Okay
-	    </div>
-	  </div>
-	</div>
-	
   </div>
 </template>
 
 
-<template name="activeLos">
-  <div class="ui primary segment contact centered">
-  	<div class="ui blue block header">
-  	 	Active Lo's
-  	</div>
-    <div class="centered content">
-      Jim Bob
-    </div>
+<template name="activelos">
+  <div class="activelos">
+	<div class="ui primary segment centered">
+	  	<div class="ui blue inverted block header">
+	  	 	Active Lo's
+	  	</div>
+	    <div class="centered content">
+		  {{#each los}}
+		    {{> lo}}
+		  {{/each}}
+	    </div>
+	</div>
   </div>
 </template>
 

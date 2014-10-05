@@ -92,10 +92,11 @@ body
   font-size: 1.2em;
 }
 
+.activelos,
 .contact {
-  padding: 50px 0;
+  padding: 15px 0;
   width: 50vw;
-  left: 25%;
+  margin: 0 auto;
 }
 
 .plus {
@@ -106,9 +107,10 @@ body
 
 @media (max-width: 750px) {
 	.contact,
+	.activelos,
 	.lo.container,
 	#you.content,
 	.login.form {
-		width:100vw;
+		width:82.5vw;
 	}
 }
