@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 var url = 'https://api.parse.com/1/push',
 	appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P',
 	restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT',
-	targetDevice = 'pC2h2n3zkR';
+	targetDevice = 'c889d897-0570-4ba3-ac6a-c2c932ea2a8f';
+=======
+var url = 'https://api.parse.com/1/push';
+var appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P';
+var restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT';
+var targetDevice = 'pC2h2n3zkR';
+>>>>>>> 237fb4168bda47683592392c8efcd02eb7c373d7
 
 Los = new Meteor.Collection("los");
 Contacts = new Meteor.Collection("contacts");
