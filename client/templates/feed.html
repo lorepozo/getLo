@@ -1,14 +1,19 @@
 <template name="feed">
-  <div class="right floated ui blue button logo inverted link logout">
-    <i class="location icon"></i>
-	Logout
+  <div>
+	<div class="right floated ui blue button logo inverted link logout">
+      <i class="location icon"></i>
+  	Logout
+    </div>
+    <div class="left floated ui blue block header">
+    	{{name}}
+    </div>
   </div>
   <div class="prompt">
     <div class="question"> What's up? </div>
-    <div id="today" class="content">
+    <div id="you" class="content">
       <div class="ui inline fluid input">
-        <label class="ui inline label">Content: </label>
-		<input id="post" type="text" placeholder="The sky...">
+        <label class="ui inline label">Your Lo: </label>
+		<input id="post" type="text" placeholder="{{lo}}">
       </div>
 	  <div class="ui inline fluid input">
 		<label class="ui inline label">Recipient: </label>
@@ -21,23 +26,17 @@
   </div>
 
   <div class="ui divider"></div>
-  <div class="feed">
-    {{feed}}
-  </div>
-  {{#each posts}}
-    {{> post}}
+  {{#each los}}
+    {{> lo}}
   {{/each}}
 
 </template>
 
-<template name="post">
-  <div class="post container">
+<template name="lo">
+  <div class="lo container">
     <div class="content">
-      "{{content}}"
+      <strong>{{sender}}</strong> sent a <a class="ui blue link header square" href="https://www.google.com/maps/@{{lat}},{{long}},16z">Lo<i style="padding:0;margin:0" class="location icon"></i></a> to <strong>{{recipient}}</strong>
       <br>
-    </div>
-    <div class="user">
-      {{sender}}
     </div>
   </div>
 </template>

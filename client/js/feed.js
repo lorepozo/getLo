@@ -1,58 +1,68 @@
-// Today!
-var today = new Date();
-var start = new Date(today.setHours(0, 0, 0, 0));
-
-Session.set("yourPost", "");
-
 Template.feed.events({
     'click .logout': function () {
 		Meteor.logout()
     }
 });
 
-Template.feed.posts = function () {
-  return Posts.find({$or:
-	  [{receiver: Meteor.user().username},
-	  {sender: Meteor.user().username}]
-  }, {
+Template.feed.name = function () {
+	return Meteor.user().profile.name
+}
+
+try {
+	navigator.geolocation.getCurrentPosition(function (lo) {
+		setLo(lo.coords)
+	})
+}
+catch (e) {
+	setlo()
+}
+	
+
+
+Template.feed.los = function () {
+  return Los.find({$or: [
+	  {receiver: Meteor.user().username},
+	  {sender: Meteor.user().username}
+  ]}, {
     sort: {timestamp: -1},
     limit: 35
   })
 };
 
-Template.feed.feed = function () {
-
-  var count = Posts.find({
-    receiver: Meteor.user().username,
-	sender: Meteor.user().username
-  }).count();
-
-  if (count === 0) {
-    return "You have nothing in your feed!"
-  }
-};
-
-Template.post.rendered = function () {
-  $(this.find('.post'))
+Template.lo.rendered = function () {
+  $(this.find('.lo'))
     .transition('fade up in');
 };
 
 Template.feed.events({
   'click .submit.button': function () {
-    Meteor.call('post', getPostInput(), getRecipient());
+	lo = getLo();
+    Meteor.call('post', {
+		content: lo,
+		lat: /(.*?)\s;/.exec(lo)[1],
+		long: /;\s(.*?)/.exec(lo)[1],
+		recipient: getRecipient()
+	});
     clearInputs();
   },
   'keyup #post' : function (event) {
     if (event.keyCode === 13) {
-      Meteor.call('post', getPostInput(), getRecipient());
+      Meteor.call('post', {
+		  content: getLo(),
+		  recipient: getRecipient()
+	  });
       clearInputs();
     }
   }
 });
 
-getPostInput = function () {
+getLo = function () {
   return $('#post').val();
 };
+
+setLo = function (coords) {
+  return $('#post').val(String(coords.latitude) + " ; " + String(coords.longitude))
+}
 
 getRecipient = function () {
   return $('#recipient').val();

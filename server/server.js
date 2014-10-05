@@ -1,42 +1,37 @@
-Posts = new Meteor.Collection("posts");
+Los = new Meteor.Collection("los");
 
-getAllPosts = function () {
-  return Posts.find({
+getAllLos = function () {
+  return Los.find({
   }, {
     sort: {timestamp : -1},
     limit: 32});
 };
 
-Meteor.publish("allPosts", getAllPosts);
+Meteor.publish("allLos", getAllLos);
 
 Meteor.methods({
-  post: function (content, recipient) {
+  post: function (o) {
 
-    var user = Meteor.users.find({_id: this.userId}).fetch()[0];
-
-    var date = new Date();
-    var start = new Date(date.setHours(-4, 0, 0, 0)); // EDT fix
-
-    var count = Posts.find({
-		receiver: Meteor.user().username,
-  		sender: Meteor.user().username
-	}).count();
-
-    if (count === 0) {
-      Posts.insert({
-        owner: this.userId,
-        sender: user.username,
-        receiver: recipient,
-        name: user.profile.name,
-        content: content,
-        timestamp: new Date()
-      });
-    }
+    var user = Meteor.users.find({_id: this.userId}).fetch()[0],
+		count = Los.find({
+			receiver: Meteor.user().username,
+  			sender: Meteor.user().username
+		}).count();
+    Los.insert({
+      owner: this.userId,
+      sender: user.username,
+      recipient: o.recipient,
+      name: user.profile.name,
+      content: o.content,
+	  lat: o.lat,
+	  long: o.long,
+      timestamp: new Date()
+    });
   }
 });
 
 // Allow permissions for the server.
-Posts.allow({
+Los.allow({
   insert: function (userId, doc) {
     // Don't fuck with the console, yo
     return false;
