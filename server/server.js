@@ -1,3 +1,8 @@
+var url = 'https://api.parse.com/1/push'
+var appId = 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P'
+var restKey = 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT'
+var targetDevice = 'installation id goes here'
+
 Los = new Meteor.Collection("los");
 Contacts = new Meteor.Collection("contacts");
 
@@ -31,8 +36,22 @@ Meteor.methods({
 	  lat: o.lat,
 	  long: o.long,
       timestamp: new Date()
-    })
+    });
+	
+	var notifMsg = string.concat(user.username, " wants to GetLo")
+	var pushPayload = {"where": {"objectId": targetDevice}, "data": {"alert": notifMsg}};
+	pushPayload = JSON.stringify(pushPayload);
+	
+	$.ajax({
+	url: url,
+	method: "POST",
+	port: 443,
+	post: 1,
+	postfields: pushPayload,
+	httpheader: {string.concat("X-Parse-Application-Id: ", appId), string.concat("X-Parse-REST-API-Key: " . restKey), "Content-Type: application/json"}
+	})
   },
+  
   add: function (contact) {
   	
 	var user = Meteor.users.find({_id: this.userId}).fetch()[0];
