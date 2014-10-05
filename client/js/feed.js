@@ -74,6 +74,6 @@ clearInput = function () {
   $('#recipient').val("");
 };
 
-Template.contact.contacts = function () {
+Template.contacts.contacts = function () {
 	return Contacts.find()
 }

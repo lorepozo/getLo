@@ -41,10 +41,6 @@ Meteor.methods({
 	Contacts.insert({
 		user: user.username,
 		contact: contact
-	});
-	Contacts.insert({
-		contact: contact,
-		user: user.username
 	})
   }
 });
