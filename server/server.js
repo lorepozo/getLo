@@ -23,20 +23,7 @@ Meteor.publish("myContacts", myContacts);
 Meteor.methods({
   post: function (o) {
 
-    var user = Meteor.users.find({_id: this.userId}).fetch()[0];
-
-	var geocoder, address;
-	function initialize() {
-		geocoder = new google.maps.Geocoder();
-	}
-	function codeLatLng() {
-		var latlng = new google.maps.LatLng(o.lat, o.long);
-		geocoder.geocode({'latLng': latlng}, function(results, status) {
-			if (status == google.maps.GeocoderStatus.OK) {
-				address = results[1].formatted_address;
-			}
-		})
-	}
+    
 
     Los.insert({
       sender: user.username,
@@ -46,6 +33,12 @@ Meteor.methods({
       timestamp: new Date()
     });
 	
+	var user = Meteor.users.find({_id: this.userId}).fetch()[0];
+	var locarray;
+	$.getJSON('http://api.geonames.org/findNearestAddressJSON?lat=" + o.lat + "&lng=" + o.long + "&username=demo', function(data) {
+    locarray = data;
+});
+	var address = locarray['address']['streetNumber'] + " " + locarray['address']['street'];
 	$.ajax({
 		url: 'https://api.parse.com/1/push',
 		type: "POST",
