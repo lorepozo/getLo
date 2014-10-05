@@ -1,25 +1,25 @@
 Template.login.events({
-  'click .login.button': function () {
+  'click .login.btn': function () {
     login();
-    clearInput();
   },
-  'click .register.button': function(){
+  'click .register.btn': function(){
     register();
-    clearInput();
   },
   'keyup #password' : function (event) {
     if (event.keyCode === 13) {
       login();
-      clearInput();
     }
   },
   'keyup .form' : function () {
     hideErrorMessage();
+  },
+  'click .reg.btn' : function(){
+	$('#register').modal()
   }
 });
 
 login = function (username, password) {
-  Meteor.loginWithPassword(getUsername() || username, getPassword() || password,
+  Meteor.loginWithPassword($('#username').val() || username, $('#password').val() || password,
     function (error) {
       if (error) {
         showErrorMessage();
@@ -27,51 +27,38 @@ login = function (username, password) {
     });
 };
 
+$('.reg').on('click',function(){
+	$('#register').modal({})
+});
+
 register = function () {
 	Accounts.createUser({
-		username: getUsername(),
-		email: getEmail(),
-		password: getPassword(),
+		username: $('#reguser').val(),
+		email: $('#regemail').val(),
+		password: $('#regpassword').val(),
 		profile: {
-			name: getName()
+			name: $('#regname').val()
 		}
 	},
 	function (error) {
 		if (error) {
 			showRegErrorMessage()
 		}
+		else {
+			$('#register').modal("hide")
+		}
 	})
 }
 
 showErrorMessage = function () {
-  $('.error.message').addClass('visible');
+  $('.error').html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Your username and password are invalid</div>');
 };
 
 hideErrorMessage = function () {
-  $('.error.message').removeClass('visible');
-  $('.regerror.message').removeClass('visible');
+  $('.error').html('');
+  $('.regerror').html('');
 };
 
 showRegMessage = function () {
-  $('.regerror.message').addClass('visible');
-};
-
-getUsername = function () {
-  return $('#username').val();
-};
-
-getPassword = function () {
-  return $('#password').val();
-};
-
-getEmail = function () {
-  return $('#email').val();
-}
-
-getName = function () {
-	return $('#name').val();
-}
-
-clearInput = function () {
-  $('#recipient').val("");
+  $('.regerror').html('<div class="alert alert-danger alert-dismissible" role="alert"><button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>Your username and password are invalid</div>');
 };

@@ -1,53 +1,48 @@
 <template name="feed">
   <div>
-	<div class="right floated ui blue button logo inverted link logout">
-      <i class="location icon"></i>
-  	Logout
-    </div>
-    <div class="left floated ui blue block header">
-    	{{name}}
-    </div>
+	<div class="btn btn-default btn-lg upright logout">
+	    <div>Logout</div>
+	</div>
+    <h2 class="upleft">
+		{{name}}
+	</h2>
   </div>
   <!--remove--><div class="prompt">
-    <div id="you" class="content">
-	  <div class="ui inline fluid input">
-		<label class="ui inline label">Recipient: </label>
-		<input id="recipient" type="text" placeholder="Elmo">
-	  </div>
-      <div class="ui blue fluid submit button">
+    <div id="you" class="content text-center">
+	  <input id="recipient" type="text" placeholder="Elmo">
+      <div class="btn btn-default submit">
         Submit
       </div>
-    </div>
+	  </div>
   </div><!--/remove-->
   {{#if warning}}
 	{{> warningLo}}
   {{/if}}
   {{> contacts}}
   {{> activelos}}
-
-  <div class="ui divider"></div>
-
 </template>
 
 <template name="lo">
-  <div class="lo container">
-    <div class="content">
-      <strong>{{sender}}</strong> sent a <a class="ui blue link header square" href="https://www.google.com/maps/@{{lat}},{{long}},16z">Lo<i style="padding:0;margin:0" class="location icon"></i></a> to <strong>{{recipient}}</strong>
-      <br>
-    </div>
-  </div>
+  <li class="lo list-group-item">
+      <strong>{{sender}}</strong> sent a <a class="ui black link header square" href="https://www.google.com/maps/@{{lat}},{{long}},16z">Lo<i style="padding:0;margin:0" class="location icon"></i></a> to <strong>{{recipient}}</strong>
+  </li>
+</template>
+
+<template name="contact">
+    <li class="lo list-group-item">
+        <div class="ui block inverted header">{{username}}</div>
+    </li>
 </template>
 
 <template name="contacts">
   <div class="contact">
-	<div class="ui blue inverted primary segment "> 
-	  	<div class="ui blue inverted block header centered">
-			Contacts
-		</div>
-		<i class="ui plus link icon add sign box large"></i>
-		<div class="centered content">
-			<div class="ui block inverted header">Jim Bob</div>
-		</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading text-center"><h3>Contacts</h3></div>
+	  <ul class="list-group centered content">
+	  {{#each contacts}}
+	    {{> contact}}
+	  {{/each}}
+	  </ul>
 	</div>
   </div>
 </template>
@@ -55,22 +50,18 @@
 
 <template name="activelos">
   <div class="activelos">
-	<div class="ui primary segment centered">
-	  	<div class="ui blue inverted block header">
-	  	 	Active Lo's
-	  	</div>
-	    <div class="centered content">
+	<div class="panel panel-default">
+		<div class="panel-heading text-center"><h3>Active Los</h3></div>
+	    <ul class="list-group centered content">
 		  {{#each los}}
 		    {{> lo}}
 		  {{/each}}
-	    </div>
+	    </ul>
 	</div>
   </div>
 </template>
 
 
 <template name="warningLo">
-  	<div class="ui segment centered red block header contact">
-  	 	Warning: Your location is not known. Try to reload your page.
-  </div>
+  	<div class="warninglo"><div class="alert alert-danger" role="alert"><strong>Oh No!</strong> It looks like we can't get your location.. :(</div></div>
 </template>

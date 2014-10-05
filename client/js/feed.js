@@ -2,12 +2,15 @@ var o = {}; // for o.lo
 Template.feed.events({
     'click .logout': function () {
 		Meteor.logout()
-    }
+    },
+	'click .plus': function(){
+		$('.addcontact.modal').modal()
+	}
 });
 
 Template.feed.name = function () {
 	return Meteor.user().profile.name
-}
+};
 
 setTimeout(function(){Template.feed.warning = function () {return true}},2000);
 try {
@@ -37,14 +40,19 @@ Template.lo.rendered = function () {
 };
 
 Template.feed.events({
-  'click .submit.button': function () {
+  'click .logout': function () {
+	Meteor.logout()
+  },
+  'click .plus': function(){
+  	$('.addcontact.modal').modal()
+  },
+  'click .submit.btn': function () {
     Meteor.call('post', {
 		sender: Meteor.user().username,
 		lat: o.lo.latitude,
 		long: o.lo.longitude,
 		recipient: getRecipient()
 	});
-	alert();
     clearInput();
   },
   'keyup #post' : function (event) {
@@ -70,3 +78,14 @@ getRecipient = function () {
 clearInput = function () {
   $('#recipient').val("");
 };
+
+Template.contact.contacts = function () {
+	return [
+		{
+			username: "example_friend"
+		},
+		{
+			username: "another example"
+		}
+	]
+}

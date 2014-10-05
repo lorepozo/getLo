@@ -1,3 +1,13 @@
+.upright {
+	position:absolute;
+	right:20px;
+}
+
+.upleft {
+	position:relative;
+	left:20px;
+}
+
 body
 {
   font-family: 'Lato', 'Helvetic Neue', 'Helvetica', sans-serif;
@@ -26,18 +36,8 @@ body
 }
 
 .login.form {
-  position: relative;
-  top: 20px;
-  left: 50%;
-  margin-left: -160px;
-  margin-bottom: 160px;
   width: 320px;
-}
-
-.login.logo {
-  text-align: center;
-  font-size: 3em;
-  margin-bottom: 20px;
+  margin: 0 auto;
 }
 
 .question {
@@ -93,7 +93,8 @@ body
 }
 
 .activelos,
-.contact {
+.contact,
+.warninglo {
   padding: 15px 0;
   width: 50vw;
   margin: 0 auto;
@@ -103,14 +104,4 @@ body
 	position:absolute;
 	right:30px;
 	top:27.5px;
-}
-
-@media (max-width: 750px) {
-	.contact,
-	.activelos,
-	.lo.container,
-	#you.content,
-	.login.form {
-		width:82.5vw;
-	}
 }

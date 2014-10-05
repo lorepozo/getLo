@@ -1,41 +1,66 @@
 <template name="login">
-  <div class="ui login form">
-    <div class="login logo">
-      <i class="blue location icon"></i>
-    </div>
-    <div class="field">
-      <label>Username</label>
-      <div class="ui left labeled icon input">
-        <input id="username" type="text" placeholder="Username">
-        <i class="grey location icon"></i>
-      </div>
-    </div>
-    <div class="field">
-      <label>Password</label>
-      <div class="ui left labeled icon input">
-        <input id="password" type="password" placeholder="Password">
-        <i class="lock icon"></i>
-      </div>
-    </div>
-    <div class="ui blue fluid login button">Login</div>
-    <div class="ui error message">
-      The Username or Password is incorrect.
-    </div>
-	<hr>
-    <div class="field">
-      <label>Name</label>
-      <div class="ui left labeled icon input">
-        <input id="name" type="name" placeholder="Name">
-        <i class="user icon"></i>
-      </div>
-    </div>
-    <div class="field">
-      <label>Email</label>
-      <div class="ui left labeled icon input">
-        <input id="email" type="email" placeholder="Email">
-        <i class="mail icon"></i>
-      </div>
-    </div>
-	<div class="ui blue fluid register button">Register</div>
-  </div>
+	<div class="login form" role="form">
+	  <div class="form-group">
+	    <div class="input-group">
+	      <div class="input-group-addon"><i class="fa fa-location-arrow"></i></div>
+	      <input class="form-control" type="text" id="username" placeholder="username">
+	    </div>
+	  </div>
+	  <div class="form-group">
+		<div class="input-group">
+	      <div class="input-group-addon"><i class="fa fa-lock"></i></div>
+	      <input type="password" class="form-control" id="password" placeholder="password">
+		</div>
+	  </div>
+	  
+	  <div class="error"></div>
+	  
+	  <button type="submit" class="btn btn-default login">Sign in</button>
+	  <button type="submit" class="btn btn-default reg">Register</button>
+	</div>
+
+	  <div class="modal fade" id="register">
+	    <div class="modal-dialog">
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+	          <h4 class="modal-title">Register on getLo</h4>
+	        </div>
+	        <div class="modal-body">
+			  <div class="form-group">
+			  	<div class="form-group">
+				  <div class="input-group">
+					<div class="input-group-addon"><i class="fa fa-location-arrow"></i></div>
+					<input class="form-control" type="text" id="reguser" placeholder="username">
+				  </div>
+				</div>
+				<div class="form-group">
+				  <div class="input-group">
+					<div class="input-group-addon"><i class="fa fa-lock"></i></div>
+					<input type="password" class="form-control" id="regpassword" placeholder="password">
+				  </div>
+				</div>
+				<div class="input-group">
+				  <div class="input-group-addon"><i class="fa fa-user"></i></div>
+				  <input type="email" class="form-control" id="regname" placeholder="name">
+				</div>
+			  </div>
+			  <div class="form-group">
+			    <div class="input-group">
+				  <div class="input-group-addon"><i class="fa fa-envelope"></i></div>
+				  <input type="email" class="form-control" id="email" placeholder="email">
+			  	</div>
+			  </div>
+			</div>
+			
+			<div class="regerror"></div>
+			
+			<div class="modal-footer">
+			  <button class="btn btn-default" data-dismiss="modal">Close</button>
+			  <button class="btn btn-primary register" data-dismiss="modal">Register</button>
+			</div>
+		  </div>
+	    </div>
+	  </div>
+
 </template>
