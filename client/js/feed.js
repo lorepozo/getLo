@@ -92,6 +92,5 @@ Template.contacts.contacts = function () {
 		}
 		if (!bool) d.push({user: c[i].user, contact: c[i].contact});
 	}
-	console.log(d);
 	return d
 }

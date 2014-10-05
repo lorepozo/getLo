@@ -23,22 +23,23 @@ Meteor.publish("myContacts", myContacts);
 Meteor.methods({
   post: function (o) {
 
-    
+	var user = Meteor.users.find({_id: this.userId}).fetch()[0],
+		address;
+	$.getJSON('http://api.geonames.org/findNearestAddressJSON?lat=' + o.lat + '&lng=' + o.long + '&username=demo', function(data) {
+    address = data;
+});
 
     Los.insert({
       sender: user.username,
       recipient: o.recipient,
 	  lat: o.lat,
 	  long: o.long,
+	  address: address,
+	  streetnum: address.address.streetNumber,
+	  street: address.address.street,
       timestamp: new Date()
     });
-	
-	var user = Meteor.users.find({_id: this.userId}).fetch()[0];
-	var locarray;
-	$.getJSON('http://api.geonames.org/findNearestAddressJSON?lat=" + o.lat + "&lng=" + o.long + "&username=demo', function(data) {
-    locarray = data;
-});
-	var address = locarray['address']['streetNumber'] + " " + locarray['address']['street'];
+
 	$.ajax({
 		url: 'https://api.parse.com/1/push',
 		type: "POST",
