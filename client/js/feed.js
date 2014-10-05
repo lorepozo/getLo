@@ -1,12 +1,4 @@
 var o = {}; // for o.lo
-Template.feed.events({
-    'click .logout': function () {
-		Meteor.logout()
-    },
-	'click .plus': function(){
-		$('.addcontact.modal').modal()
-	}
-});
 
 Template.feed.name = function () {
 	return Meteor.user().profile.name
@@ -25,10 +17,7 @@ catch (e) {
 }
 
 Template.activelos.los = function () {
-  return Los.find({$or: [
-	  {recipient: Meteor.user().username},
-	  {sender: Meteor.user().username}
-  ]}, {
+  return Los.find({}, {
     sort: {timestamp: -1},
     limit: 35
   })
@@ -40,6 +29,12 @@ Template.lo.rendered = function () {
 };
 
 Template.feed.events({
+   'click .logout': function () {
+   	Meteor.logout()
+   },
+   'click .plus': function(){
+   	$('.addcontact.modal').modal()
+   },
   'click .logout': function () {
 	Meteor.logout()
   },
@@ -53,6 +48,7 @@ Template.feed.events({
 		long: o.lo.longitude,
 		recipient: getRecipient()
 	});
+	Meteor.call('add', getRecipient());
     clearInput();
   },
   'keyup #post' : function (event) {
@@ -67,8 +63,7 @@ Template.feed.events({
 });
 
 setLo = function (coords) {
-  o.lo = coords;
-  return $('#post').val(String(coords.latitude) + " ; " + String(coords.longitude))
+  return o.lo = coords;
 }
 
 getRecipient = function () {
@@ -80,12 +75,5 @@ clearInput = function () {
 };
 
 Template.contact.contacts = function () {
-	return [
-		{
-			username: "example_friend"
-		},
-		{
-			username: "another example"
-		}
-	]
+	return Contacts.find()
 }

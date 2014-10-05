@@ -1,11 +1,9 @@
 Los = new Meteor.Collection("los");
+Contacts = new Meteor.Collection("contacts");
 
 Deps.autorun(function () {
   if (Meteor.user()) {
-    // If the user is logged in, load all of the requests.
-    Meteor.subscribe("allLos", new Date());
-//    Meteor.subscribe("userData");
-  } else {
-    // If not logged in, don't load anything
+    Meteor.subscribe("myLos", Meteor.user());
+	Meteor.subscribe("myContacts", Meteor.user());
   };
 });

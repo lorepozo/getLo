@@ -1,13 +1,24 @@
 Los = new Meteor.Collection("los");
+Contacts = new Meteor.Collection("contacts");
 
-getAllLos = function () {
-  return Los.find({
-  }, {
-    sort: {timestamp : -1},
-    limit: 32});
+myLos = function (user) {
+  return Los.find({$or: [
+	  {recipient: user.username},
+	  {sender: user.username}
+	]}, {
+	  sort: {timestamp: -1},
+	  limit: 32
+	});
 };
 
-Meteor.publish("allLos", getAllLos);
+myContacts = function (user) {
+	return Contacts.find({
+		user: user.username
+	})
+};
+
+Meteor.publish("myLos", myLos);
+Meteor.publish("myContacts", myContacts);
 
 Meteor.methods({
   post: function (o) {
@@ -15,28 +26,25 @@ Meteor.methods({
     var user = Meteor.users.find({_id: this.userId}).fetch()[0];
 
     Los.insert({
-      owner: this.userId,
       sender: user.username,
       recipient: o.recipient,
-      name: user.profile.name,
-      content: o.content,
 	  lat: o.lat,
 	  long: o.long,
       timestamp: new Date()
-    });
-  }
-});
-
-// Allow permissions for the server.
-Los.allow({
-  insert: function (userId, doc) {
-    // Don't fuck with the console, yo
-    return false;
+    })
   },
-  update: function (userId, doc) {
-    return userId === doc.owner;
-  },
-  remove: function (userId, doc) {
-    return userId === doc.owner;
+  add: function (contact) {
+  	
+	var user = Meteor.users.find({_id: this.userId}).fetch()[0];
+	
+	if (!Meteor.users.find({username: contact}).fetch()[0]) {return}
+	Contacts.insert({
+		user: user.username,
+		contact: contact
+	});
+	Contacts.insert({
+		contact: contact,
+		user: user.username
+	})
   }
 });
