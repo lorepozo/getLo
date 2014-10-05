@@ -34,17 +34,17 @@ Meteor.methods({
     });
 	
 	var geocoder, address;
-	// function initialize() {
-	// 	geocoder = new google.maps.Geocoder();
-	// }
-	// function codeLatLng() {
-	// 	var latlng = new google.maps.LatLng(o.lat, o.long);
-	// 	geocoder.geocode({'latLng': latlng}, function(results, status) {
-	// 		if (status == google.maps.GeocoderStatus.OK) {
-	// 			address = results[1].formatted_address;
-	// 		}
-	// 	}
-	// }
+	function initialize() {
+		geocoder = new google.maps.Geocoder();
+	}
+	function codeLatLng() {
+		var latlng = new google.maps.LatLng(o.lat, o.long);
+		geocoder.geocode({'latLng': latlng}, function(results, status) {
+			if (status == google.maps.GeocoderStatus.OK) {
+				address = results[1].formatted_address;
+			}
+		})
+	}
 	
 	$.ajax({
 		url: 'https://api.parse.com/1/push',
