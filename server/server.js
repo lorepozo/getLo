@@ -40,14 +40,15 @@ Meteor.methods({
       timestamp: new Date()
     });
 
-	$.ajax({
-		url: 'https://api.parse.com/1/push',
-		type: "POST",
-		contentType: "application/json",
-		port: 443,
-		data: JSON.stringify({"where": {"objectId": 'pC2h2n3zkR'}, "data": {"alert": user.username + " wants to getLo " + address}}),
-		headers: {"X-Parse-Application-Id": 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P', "X-Parse-REST-API-Key": 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT'}
-	})
+//	Using Parse to send push notifications to an android device... Didn't end up integrating all that much
+//	$.ajax({
+//		url: 'https://api.parse.com/1/push',
+//		type: "POST",
+//		contentType: "application/json",
+//		port: 443,
+//		data: JSON.stringify({"where": {"objectId": 'pC2h2n3zkR'}, "data": {"alert": user.username + " wants to getLo " + address}}),
+//		headers: {"X-Parse-Application-Id": 'm31OmA2VnCG1cR6DEzeBJzNOHPIkH3j0eAVPFR7P', "X-Parse-REST-API-Key": 'FxRbprMjTmLmoUchaLp3BxVxIDzZwCWFiEwhyoAT'}
+//	})
   },
   
   add: function (contact) {
